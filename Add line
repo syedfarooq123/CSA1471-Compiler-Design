@@ -1,0 +1,54 @@
+%{
+#include<stdio.h>
+%}
+
+%%
+
+[a-zA-Z][a-zA-Z0-9]+ { printf("\n%s is IDENTIFIER", yytext);}
+.+ { printf("\n%s is NOT AN IDENTIFIER",yytext);}
+
+%%
+int yywrap(){}
+int main()
+{
+	while( yylex());
+}
+	%{
+int vow_count=0;
+int const_count=0;
+%}
+
+%%
+
+[aeiouAEIOU] {vow_count++;}
+
+[a-zA-Z] {const_count++;}
+
+%%
+
+int yywrap(){}
+int main()
+{
+printf("enter the string of vowels and consonents:");
+yylex();
+printf("number of vowels are:%d\n",vow_count);
+printf("number of consonents are:%d\n",const_count);
+return 0;
+}	%{
+#include<stdio.h>
+int ln=0;
+%}
+
+%%
+
+.* {ln++; fprintf(yyout,"\n%d:%s",ln,yytext);}
+%%
+int yywrap(){}
+
+int main()
+{
+yyin=fopen("simple.txt","r");
+yyout=fopen("out.txt","w");
+yylex();
+return 0;
+}
