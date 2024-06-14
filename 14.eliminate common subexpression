@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main() 
+{
+    int a, b, c, d, e, f, result1;
+    a = 2;
+    b = 3;
+    c = 4;
+    d = 5;
+    result1 = a * b;
+    e = result1 + c;
+    f = result1 + d;
+    printf("Optimized Results:\n");
+    printf("e = %d\n", e);
+    printf("f = %d\n", f);
+    return 0;
+}
